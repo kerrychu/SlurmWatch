@@ -1,0 +1,2 @@
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           7605933  gpu_cuda      v2t  uqxchu1  R   18:16:31      1 bun076
