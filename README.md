@@ -25,7 +25,9 @@ Introducing **SlurmWatch** - a tool meticulously crafted for effortless monitori
 - remember to replace the `.env` webhook to your own
 
 ## Future Features
+- notification when job status change
 - enable capability to monitor multiple users jobs instead of the signed in user
+- flexible configuration
 
 
 ## Future Integrations
