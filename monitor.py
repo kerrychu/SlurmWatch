@@ -66,6 +66,7 @@ def monitor_my_jobs():
                 ]
                 data = {"update": "Finished JOBS", "jobs": finished_job_records}
                 send_slack_message(data=data)
+            write_job_records_to_json(current_jobs_records, JOB_FILE_PATH)
     else:
         last_updated_job_records = list_my_job_records()
         write_job_records_to_json(last_updated_job_records, JOB_FILE_PATH)
