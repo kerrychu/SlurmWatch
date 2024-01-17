@@ -38,3 +38,9 @@ Feel free to create an issue or contact me at `xiaoran.chu@uq.edu.au` (call me k
 or
 
 Simply fork the repo and create a pull request and let's crunch some code together.
+
+## Useful links
+
+- [Slurm official site](https://slurm.schedmd.com/)
+- [Slurm GitHub](https://github.com/SchedMD/slurm)
+- [sbatch command](https://slurm.schedmd.com/sbatch.html)
