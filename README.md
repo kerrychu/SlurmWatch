@@ -28,7 +28,7 @@ Introducing **SlurmWatch** - a tool meticulously crafted for effortless monitori
 - notification when job status change
 - enable capability to monitor multiple users jobs instead of the signed in user
 - flexible configuration
-
+- adding a debug mode
 
 ## Future Integrations
 
