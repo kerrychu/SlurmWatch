@@ -24,6 +24,10 @@ Introducing **SlurmWatch** - a tool meticulously crafted for effortless monitori
 - follow [slack webhook tutorial](https://api.slack.com/messaging/webhooks) to create a slack app for your slack workspace and add it to appropriate channels
 - remember to replace the `.env` webhook to your own
 
+## Future Features
+- enable capability to monitor multiple users jobs instead of the signed in user
+
+
 ## Future Integrations
 
 Currently, the future integrations considered are
