@@ -60,6 +60,7 @@ def monitor_my_jobs():
                     if record["JOBID"] in new_job_ids
                 ]
                 payload = {"status": "NEW JOBS", "jobs": new_job_records}
+                print({"payload": payload})
                 send_slack_message(data=payload, url=URL)
             if finished_job_ids != set():
                 finished_job_records = [
@@ -68,6 +69,7 @@ def monitor_my_jobs():
                     if record["JOBID"] in finished_job_ids
                 ]
                 payload = {"status": "Finished JOBS", "jobs": finished_job_records}
+                print({"payload": payload})
                 send_slack_message(data=payload, url=URL)
     else:
         last_updated_job_records = list_user_job_records()
