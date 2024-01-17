@@ -56,7 +56,7 @@ def monitor_my_jobs():
                     for record in current_jobs_records
                     if record["JOBID"] in new_job_ids
                 ]
-                data = {"status": "NEW JOBS", "jobs": new_job_records}
+                data = {"update": "NEW JOBS", "jobs": new_job_records}
                 send_slack_message(data=data)
             if finished_job_ids != set():
                 finished_job_records = [
@@ -64,7 +64,7 @@ def monitor_my_jobs():
                     for record in last_updated_job_records
                     if record["JOBID"] in finished_job_ids
                 ]
-                data = {"status": "Finished JOBS", "jobs": finished_job_records}
+                data = {"update": "Finished JOBS", "jobs": finished_job_records}
                 send_slack_message(data=data)
     else:
         last_updated_job_records = list_my_job_records()
