@@ -8,15 +8,12 @@ from utils.data_serialization import (
     write_job_records_to_json,
 )
 
-URL = (
-    "https://hooks.slack.com/services/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"
-)
 JOB_FOLDER = "jobs"
 JOB_FILE = "last_updated.json"
 JOB_FILE_PATH = os.path.join(JOB_FOLDER, JOB_FILE)
 
 
-def list_user_job_records() -> JOB_RECORDS:
+def list_my_job_records() -> JOB_RECORDS:
     """_summary_ list current jobs of mine
 
     Returns:
@@ -43,7 +40,7 @@ def monitor_my_jobs():
     last_updated_job_records = get_last_updated_job_records()
 
     if last_updated_job_records:
-        current_jobs_records = list_user_job_records()
+        current_jobs_records = list_my_job_records()
         current_job_ids = set([record["JOBID"] for record in current_jobs_records])
         last_updated_job_ids = set(
             [record["JOBID"] for record in last_updated_job_records]
@@ -61,7 +58,7 @@ def monitor_my_jobs():
                 ]
                 payload = {"status": "NEW JOBS", "jobs": new_job_records}
                 print({"payload": payload})
-                send_slack_message(data=payload, url=URL)
+                send_slack_message(data=payload)
             if finished_job_ids != set():
                 finished_job_records = [
                     record
@@ -70,9 +67,9 @@ def monitor_my_jobs():
                 ]
                 payload = {"status": "Finished JOBS", "jobs": finished_job_records}
                 print({"payload": payload})
-                send_slack_message(data=payload, url=URL)
+                send_slack_message(data=payload)
     else:
-        last_updated_job_records = list_user_job_records()
+        last_updated_job_records = list_my_job_records()
         write_job_records_to_json(last_updated_job_records, JOB_FILE_PATH)
 
 
