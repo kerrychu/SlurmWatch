@@ -9,7 +9,7 @@ from utils.data_serialization import (
 )
 
 URL = (
-    "https://hooks.slack.com/services/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"
+    "https://hooks.slack.com/services/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"
 )
 JOB_FOLDER = "jobs"
 JOB_FILE = "last_updated.json"
