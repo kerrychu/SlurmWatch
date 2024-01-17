@@ -72,3 +72,7 @@ def monitor_my_jobs():
     else:
         last_updated_job_records = list_user_job_records()
         write_job_records_to_json(last_updated_job_records, JOB_FILE_PATH)
+
+
+if __name__ == "__main__":
+    monitor_my_jobs()
