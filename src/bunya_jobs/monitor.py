@@ -1,9 +1,9 @@
 import subprocess
 from typing import Optional
 import os
-from .hooks.slack import send_slack_message
-from .utils.stdout_processing import stdout_to_job_records, JOB_RECORDS
-from .utils.data_serialization import (
+from src.bunya_jobs.hooks.slack import send_slack_message
+from src.bunya_jobs.utils.stdout_processing import stdout_to_job_records, JOB_RECORDS
+from src.bunya_jobs.utils.data_serialization import (
     read_json_as_job_records,
     write_job_records_to_json,
 )
