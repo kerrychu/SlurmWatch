@@ -10,4 +10,5 @@ src/bunya_jobs.egg-info/top_level.txt
 src/bunya_jobs/hooks/__init__.py
 src/bunya_jobs/hooks/slack.py
 src/bunya_jobs/utils/__init__.py
-src/bunya_jobs/utils/data_processing.py
+src/bunya_jobs/utils/data_serialization.py
+src/bunya_jobs/utils/stdout_processing.py
