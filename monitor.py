@@ -1,9 +1,9 @@
 import subprocess
 from typing import Optional
 import os
-from src.bunya_jobs.hooks.slack import send_slack_message
-from src.bunya_jobs.utils.stdout_processing import stdout_to_job_records, JOB_RECORDS
-from src.bunya_jobs.utils.data_serialization import (
+from hooks.slack import send_slack_message
+from utils.stdout_processing import stdout_to_job_records, JOB_RECORDS
+from utils.data_serialization import (
     read_json_as_job_records,
     write_job_records_to_json,
 )
@@ -72,3 +72,7 @@ def monitor_my_jobs():
     else:
         last_updated_job_records = list_user_job_records()
         write_job_records_to_json(last_updated_job_records, JOB_FILE_PATH)
+
+
+if __name__ == "__main__":
+    monitor_my_jobs()
