@@ -17,11 +17,11 @@ def send_slack_message(data: Dict[str, str]) -> str:
     Returns: request response
     """
     payload = {"text": data}
-    payload = json.dumps(payload)
+    payload_json = json.dumps(payload)
     headers = {"Content-type": "application/json"}
     response = requests.request(
-        "POST", slack_webhook, headers=headers, data=payload, timeout=3600
+        "POST", slack_webhook, headers=headers, data=payload_json, timeout=3600
     )
-    print({payload})
+    print(payload_json)
     print({"response": response.text, "response_code": response.status_code})
     return response.text
