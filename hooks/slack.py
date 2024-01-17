@@ -16,7 +16,7 @@ def send_slack_message(data: Dict[str, str]) -> str:
 
     Returns: request response
     """
-    payload = {"text": data}
+    payload = {"text": json.dumps(data)}
     payload_json = json.dumps(payload)
     headers = {"Content-type": "application/json"}
     response = requests.request(
