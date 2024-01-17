@@ -21,6 +21,6 @@ def send_slack_message(data: Dict[str, str]) -> str:
     response = requests.request(
         "POST", slack_webhook, headers=headers, data=payload, timeout=3600
     )
-    print({"payload": payload})
+    print({payload})
     print({"response": response.text, "response_code": response.status_code})
     return response.text
