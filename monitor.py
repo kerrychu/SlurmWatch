@@ -56,18 +56,16 @@ def monitor_my_jobs():
                     for record in current_jobs_records
                     if record["JOBID"] in new_job_ids
                 ]
-                payload = {"status": "NEW JOBS", "jobs": new_job_records}
-                print({"payload": payload})
-                send_slack_message(data=payload)
+                data = {"status": "NEW JOBS", "jobs": new_job_records}
+                send_slack_message(data=data)
             if finished_job_ids != set():
                 finished_job_records = [
                     record
                     for record in last_updated_job_records
                     if record["JOBID"] in finished_job_ids
                 ]
-                payload = {"status": "Finished JOBS", "jobs": finished_job_records}
-                print({"payload": payload})
-                send_slack_message(data=payload)
+                data = {"status": "Finished JOBS", "jobs": finished_job_records}
+                send_slack_message(data=data)
     else:
         last_updated_job_records = list_my_job_records()
         write_job_records_to_json(last_updated_job_records, JOB_FILE_PATH)
