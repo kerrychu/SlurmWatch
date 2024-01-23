@@ -21,7 +21,9 @@ def monitor():
     for project_id in PROJECT_IDs:
         raw_quota = get_fileset_quota(project_id)
         quota_record = stdout_to_quota_records(raw_quota)
-        send_slack_message(data=quota_record, webhook=SLACK_WEBHOOK)
+        file_set = {"FileSet": project_id}
+        data = {**file_set, **quota_record}
+        send_slack_message(data=data, webhook=SLACK_WEBHOOK)
 
 
 if __name__ == "__main__":
