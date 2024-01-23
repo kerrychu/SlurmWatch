@@ -2,8 +2,15 @@ import requests
 import json
 
 
-def send_slack_message(message: str, webhook: str) -> str:
-    payload = {"text": message}
+def send_slack_message(data: dict[str, str], webhook: str) -> str:
+    """
+    send slack message with given data
+    Args:
+        data: job records
+
+    Returns: request response
+    """
+    payload = {"text": json.dumps(data)}
     payload_json = json.dumps(payload)
     headers = {"Content-type": "application/json"}
     response = requests.request(
