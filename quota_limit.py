@@ -5,7 +5,7 @@ from hooks.slack import send_slack_message
 
 load_dotenv()
 
-PROJECT_IDs: list[str] = os.getenv("PROJECT_IDS").split(',')
+PROJECT_IDs: list[str] = os.getenv("PROJECT_IDS").split(",")
 SLACK_WEBHOOK: str = os.getenv("SLACK_QUOTA_WEBHOOK")
 
 
@@ -21,7 +21,11 @@ def monitor():
     for project_id in PROJECT_IDs:
         raw_quota = get_fileset_quota(project_id)
         quota_record = stdout_to_quota_records(raw_quota)
-        send_slack_message(data=quota_record, webhook=SLACK_WEBHOOK)
+        slack_message = ""
+        for key, value in quota_record.items():
+            slack_message += f"⦿ {key}: {value}\n"
+
+        send_slack_message(message=slack_message, webhook=SLACK_WEBHOOK)
 
 
 if __name__ == "__main__":

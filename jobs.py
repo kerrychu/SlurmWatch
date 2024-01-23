@@ -7,7 +7,11 @@ from utils.data_serialization import (
     read_json_as_job_records,
     write_job_records_to_json,
 )
-from utils.subprocess_operations import stdout_to_job_records, JOB_RECORDS, get_cmd_stdout
+from utils.subprocess_operations import (
+    stdout_to_job_records,
+    JOB_RECORDS,
+    get_cmd_stdout,
+)
 
 load_dotenv()
 
@@ -37,6 +41,16 @@ def get_last_updated_job_records() -> Optional[JOB_RECORDS]:
     return read_json_as_job_records(JOB_FILE_PATH)
 
 
+def job_records_to_slack_message(job_records: JOB_RECORDS) -> str:
+    slack_message = ""
+    slack_message += "🔉 Update: New Jobs\n"
+    for job_record in job_records:
+        slack_message += "\n"
+        for key, value in job_record:
+            slack_message += f"⦿ {key}: {value}"
+    return slack_message
+
+
 def monitor_my_jobs():
     """monitor all jobs"""
 
@@ -58,16 +72,17 @@ def monitor_my_jobs():
                     for record in current_jobs_records
                     if record["JOBID"] in new_job_ids
                 ]
-                data = {"update": "NEW JOBS", "jobs": new_job_records}
-                send_slack_message(data=data, webhook=SLACK_WEBHOOK)
+
+                slack_message = job_records_to_slack_message(new_job_records)
+                send_slack_message(message=slack_message, webhook=SLACK_WEBHOOK)
             if finished_job_ids != set():
                 finished_job_records = [
                     record
                     for record in last_updated_job_records
                     if record["JOBID"] in finished_job_ids
                 ]
-                data = {"update": "Finished JOBS", "jobs": finished_job_records}
-                send_slack_message(data=data, webhook=SLACK_WEBHOOK)
+                slack_message = job_records_to_slack_message(finished_job_records)
+                send_slack_message(message=slack_message, webhook=SLACK_WEBHOOK)
             write_job_records_to_json(current_jobs_records, JOB_FILE_PATH)
     else:
         last_updated_job_records = list_my_job_records()
