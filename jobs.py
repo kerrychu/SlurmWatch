@@ -1,9 +1,7 @@
 import os
-import subprocess
 from typing import Optional
 
 from dotenv import load_dotenv
-
 from hooks.slack import send_slack_message
 from utils.data_serialization import (
     read_json_as_job_records,

@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-from hooks.slack import send_slack_message
 from utils.subprocess_operations import get_cmd_stdout
 
 load_dotenv()
