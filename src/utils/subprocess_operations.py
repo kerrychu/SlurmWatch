@@ -1,10 +1,8 @@
 import subprocess
 from typing import Optional
 
-JOB_RECORD = dict[str, str]
-JOB_RECORDS = list[JOB_RECORD]
-QUOTA_RECORD = dict[str, str]
-QUOTA_RECORDS = list[QUOTA_RECORD]
+RECORD = dict[str, str]
+RECORDS = list[RECORD]
 
 
 def get_cmd_stdout(command: str) -> str:
@@ -44,7 +42,7 @@ def strip_empty_string(l: list[str]) -> list[str]:
     return [x for x in l if x != ""]
 
 
-def stdout_to_job_records(s: str) -> JOB_RECORDS:
+def stdout_to_job_records(s: str) -> RECORDS:
     s = s.strip()
     s_list = s.split("\n")
     headers = strip_empty_string(s_list[0].split(" "))
@@ -59,7 +57,7 @@ def stdout_to_job_records(s: str) -> JOB_RECORDS:
     return job_records
 
 
-def stdout_to_quota_records(s: str) -> QUOTA_RECORD:
+def stdout_to_quota_records(s: str) -> RECORD:
     s = s.strip()
     s_list = s.split()
     headers = [
@@ -78,21 +76,20 @@ def stdout_to_quota_records(s: str) -> QUOTA_RECORD:
     return quota_record
 
 
-def stdout_to_gpu_records(s: str) -> JOB_RECORDS:
+def stdout_to_records(header: list[str], s: str) -> RECORDS:
     s = s.strip()
     s_list = s.split("\n")
-    headers = ["JOBID", "PARTITION", "NAME", "USER", "ST", "TIME", "NODES"]
     data = [strip_empty_string(element.split(" ")) for element in s_list]
     job_records = []
     for l in data:
         d = {}
-        for key, value in zip(headers, l):
+        for key, value in zip(header, l):
             d[key] = value
         job_records.append(d)
     return job_records
 
 
-def job_records_to_slack_message(header: str, job_records: JOB_RECORDS) -> str:
+def job_records_to_slack_message(header: str, job_records: RECORDS) -> str:
     slack_message = ""
     slack_message += header
     for job_record in job_records:
