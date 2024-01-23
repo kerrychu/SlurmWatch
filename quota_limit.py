@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from utils.subprocess_operations import get_cmd_stdout
+from utils.subprocess_operations import get_piped_stdout
 
 load_dotenv()
 
@@ -9,8 +9,10 @@ SLACK_WEBHOOK: str = os.getenv("SLACK_QUOTA_WEBHOOK")
 
 
 def get_fileset_quota(project_id: str) -> str:
-    cmd = f"rquota | grep ${project_id}"
-    stdout: str = get_cmd_stdout(cmd)
+    main_cmd = "rquota"
+    piped_cmd = f"grep {project_id}"
+
+    stdout: str = get_piped_stdout(main_command=main_cmd, piped_command=piped_cmd)
     return stdout
 
 
