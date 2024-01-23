@@ -5,9 +5,10 @@ import json
 def send_slack_message(data: dict[str, str], webhook: str) -> str:
     text= ""
     for key, value in data.items():
-        if isinstance(value, dict):
-            for subkey, subvalue in value.items():
-                text += f"\t⦿ {subkey}: {subvalue}\n"
+        if isinstance(value, list):
+            for element in value:
+                for subkey, subvalue in element.items():
+                    text += f"\t⦿ {subkey}: {subvalue}\n"
         text += f"⦿ {key}: {value}\n"
 
     payload = {"text": text}
