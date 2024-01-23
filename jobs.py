@@ -14,7 +14,7 @@ load_dotenv()
 JOB_FOLDER = "jobs"
 JOB_FILE = "last_updated.json"
 JOB_FILE_PATH = os.path.join(JOB_FOLDER, JOB_FILE)
-ENABLE_DEBUG_MODE = bool(os.getenv("ENABLE_JOB_DEBUG_MODE"))
+ENABLE_DEBUG_MODE = os.getenv("ENABLE_JOB_DEBUG_MODE").lower() == "true"
 SLACK_WEBHOOK = os.getenv("SLACK_JOB_WEBHOOK")
 
 
