@@ -3,13 +3,10 @@ import json
 
 
 def send_slack_message(data: dict[str, str], webhook: str) -> str:
-    """
-    send slack message with given data
-    Args:
-        data: job records
+    text= ""
+    for key, value in data.items():
+        text += f"- {key}: {value}\n"
 
-    Returns: request response
-    """
     payload = {"text": json.dumps(data)}
     payload_json = json.dumps(payload)
     headers = {"Content-type": "application/json"}
