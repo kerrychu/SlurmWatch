@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
-from utils.subprocess_operations import get_piped_stdout
+from utils.subprocess_operations import get_piped_stdout, stdout_to_quota_records
+from hooks.slack import send_slack_message
 
 load_dotenv()
 
@@ -17,9 +18,11 @@ def get_fileset_quota(project_id: str) -> str:
 
 
 def monitor():
-    ...
+    for project_id in PROJECT_IDs:
+        raw_quota = get_fileset_quota(project_id)
+        quota_record = stdout_to_quota_records(raw_quota)
+        send_slack_message(data=quota_record, webhook=SLACK_WEBHOOK)
 
 
 if __name__ == "__main__":
-    for project_id in PROJECT_IDs:
-        print(get_fileset_quota(project_id))
+    monitor()
