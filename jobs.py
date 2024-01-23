@@ -75,5 +75,6 @@ def monitor_my_jobs():
 
 
 if __name__ == "__main__":
+    print("debug", ENABLE_DEBUG_MODE)
     if not ENABLE_DEBUG_MODE:
         monitor_my_jobs()
