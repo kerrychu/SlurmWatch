@@ -5,6 +5,7 @@ from hooks.slack import send_slack_message
 
 load_dotenv()
 SLACK_WEBHOOK = os.getenv("SLACK_GPU_JOBS_WEBHOOK")
+GPU_USERS: list[str] = os.getenv("GPU_USERS").split(",")
 
 
 def get_gpu_jobs() -> str:
@@ -16,7 +17,9 @@ def get_gpu_jobs() -> str:
 def monitor():
     gpu_jobs = get_gpu_jobs()
     gpu_records = stdout_to_gpu_records(gpu_jobs)
-    slack_message = job_records_to_slack_message("🔉 Currently Running GPU Jobs\n", gpu_records)
+    header = f"🔉 Currently, there are {len(gpu_records)} running GPU Jobs\n Here are some from our lab.\n\n"
+    filtered_gpu_records = list(filter(lambda x: x['USER'] in GPU_USERS, gpu_records))
+    slack_message = job_records_to_slack_message(header, filtered_gpu_records)
     send_slack_message(slack_message, SLACK_WEBHOOK)
 
 
