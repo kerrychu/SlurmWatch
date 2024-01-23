@@ -21,7 +21,7 @@ def monitor():
     for project_id in PROJECT_IDs:
         raw_quota = get_fileset_quota(project_id)
         quota_record = stdout_to_quota_records(raw_quota)
-        slack_message = ""
+        slack_message = "💿 Current State of Quota\n"
         for key, value in quota_record.items():
             slack_message += f"⦿ {key}: {value}\n"
 
