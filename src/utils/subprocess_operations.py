@@ -40,15 +40,15 @@ def get_piped_stdout(main_command: str, piped_command: str) -> Optional[str]:
     )
 
 
-def strip_spaces(l: list[str]) -> list[str]:
+def strip_empty_string(l: list[str]) -> list[str]:
     return [x for x in l if x != ""]
 
 
 def stdout_to_job_records(s: str) -> JOB_RECORDS:
     s = s.strip()
     s_list = s.split("\n")
-    headers = strip_spaces(s_list[0].split(" "))
-    data = [strip_spaces(element.split(" ")) for element in s_list[1:]]
+    headers = strip_empty_string(s_list[0].split(" "))
+    data = [strip_empty_string(element.split(" ")) for element in s_list[1:]]
     job_records = []
     for l in data:
         d = {}
@@ -82,7 +82,7 @@ def stdout_to_gpu_records(s: str) -> JOB_RECORDS:
     s = s.strip()
     s_list = s.split("\n")
     headers = ["JOBID", "PARTITION", "NAME", "USER", "ST", "TIME", "NODES"]
-    data = [strip_spaces(element.split(" ")) for element in s_list]
+    data = [strip_empty_string(element.split(" ")) for element in s_list]
     job_records = []
     for l in data:
         d = {}
