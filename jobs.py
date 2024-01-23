@@ -46,7 +46,7 @@ def job_records_to_slack_message(job_records: JOB_RECORDS) -> str:
     slack_message += "🔉 Update: New Jobs\n"
     for job_record in job_records:
         slack_message += "\n"
-        for key, value in job_record:
+        for key, value in job_record.items():
             slack_message += f"⦿ {key}: {value}"
     return slack_message
 
