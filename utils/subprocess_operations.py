@@ -4,7 +4,7 @@ from typing import Optional
 JOB_RECORD = dict[str, str]
 JOB_RECORDS = list[JOB_RECORD]
 QUOTA_RECORD = dict[str, str]
-QUOTA_RECORDS = list(QUOTA_RECORD)
+QUOTA_RECORDS = list[QUOTA_RECORD]
 
 
 def get_cmd_stdout(command: str) -> str:
@@ -77,3 +77,17 @@ def stdout_to_quota_records(s: str) -> QUOTA_RECORD:
     for header, quota in zip(headers, s_list):
         quota_record[header] = quota
     return quota_record
+
+
+def stdout_to_gpu_records(s: str) -> JOB_RECORDS:
+    s = s.strip()
+    s_list = s.split("\n")
+    headers = ["JOBID",  "PARTITION", "NAME", "USER", "ST", "TIME", "NODES"]
+    data = [strip_spaces(element.split(" ")) for element in s_list]
+    job_records = []
+    for l in data:
+        d = {}
+        for key, value in zip(headers, l):
+            d[key] = value
+        job_records.append(d)
+    return job_records
