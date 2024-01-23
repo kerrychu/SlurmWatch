@@ -1,1 +1,4 @@
-slack_webhook=""
+SLACK_JOB_WEBHOOK=""   <- start with https://
+SLACK_QUOTA_WEBHOOK=""
+ENABLE_JOB_DEBUG_MODE=False   <- True or False only
+PROJECT_IDS="S0090,S0090"  <- no space, comma separated, no trailing comma

@@ -1,5 +1,5 @@
 import json
-from .stdout_processing import JOB_RECORDS
+from .subprocess_operations import JOB_RECORDS
 
 
 def write_job_records_to_json(records: JOB_RECORDS, filepath: str):
