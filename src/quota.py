@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
-from utils.subprocess_operations import get_piped_stdout, stdout_to_quota_records
-from hooks.slack import send_slack_message
+from src.utils.subprocess_operations import get_piped_stdout, stdout_to_quota_records
+from src.hooks.slack import send_slack_message
 
 load_dotenv()
 
