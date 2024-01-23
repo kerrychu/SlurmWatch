@@ -13,8 +13,7 @@ def get_fileset_quota(project_id: str) -> str:
     main_cmd = "rquota"
     piped_cmd = f"grep {project_id}"
 
-    stdout: str = get_piped_stdout(main_command=main_cmd, piped_command=piped_cmd)
-    return stdout
+    return get_piped_stdout(main_command=main_cmd, piped_command=piped_cmd)
 
 
 def monitor():

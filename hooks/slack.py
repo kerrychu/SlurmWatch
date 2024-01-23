@@ -1,5 +1,6 @@
-import requests
 import json
+
+import requests
 
 
 def send_slack_message(message: str, webhook: str) -> str:
