@@ -1,9 +1,15 @@
-from typing import List, Dict
+import subprocess
 
-JOB_RECORDS = List[Dict[str, str]]
+JOB_RECORDS = list[dict[str, str]]
 
 
-def strip_spaces(l: List[str]) -> List[str]:
+def get_cmd_stdout(command: str) -> str:
+    return subprocess.run(
+        command.split(" "), capture_output=True, text=True, check=False
+    ).stdout
+
+
+def strip_spaces(l: list[str]) -> list[str]:
     return [x for x in l if x != ""]
 
 

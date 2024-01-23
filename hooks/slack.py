@@ -1,14 +1,8 @@
 import requests
 import json
-from typing import Dict
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-slack_webhook = os.getenv("slack_webhook")
 
 
-def send_slack_message(data: Dict[str, str]) -> str:
+def send_slack_message(data: dict[str, str], webhook: str) -> str:
     """
     send slack message with given data
     Args:
@@ -20,7 +14,7 @@ def send_slack_message(data: Dict[str, str]) -> str:
     payload_json = json.dumps(payload)
     headers = {"Content-type": "application/json"}
     response = requests.request(
-        "POST", slack_webhook, headers=headers, data=payload_json, timeout=3600
+        "POST", webhook, headers=headers, data=payload_json, timeout=3600
     )
     print(payload_json)
     print({"response": response.text, "response_code": response.status_code})
