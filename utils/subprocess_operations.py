@@ -82,7 +82,7 @@ def stdout_to_quota_records(s: str) -> QUOTA_RECORD:
 def stdout_to_gpu_records(s: str) -> JOB_RECORDS:
     s = s.strip()
     s_list = s.split("\n")
-    headers = ["JOBID",  "PARTITION", "NAME", "USER", "ST", "TIME", "NODES"]
+    headers = ["JOBID", "PARTITION", "NAME", "USER", "ST", "TIME", "NODES"]
     data = [strip_spaces(element.split(" ")) for element in s_list]
     job_records = []
     for l in data:
@@ -91,3 +91,13 @@ def stdout_to_gpu_records(s: str) -> JOB_RECORDS:
             d[key] = value
         job_records.append(d)
     return job_records
+
+
+def job_records_to_slack_message(header: str, job_records: JOB_RECORDS) -> str:
+    slack_message = ""
+    slack_message += header
+    for job_record in job_records:
+        slack_message += "\n"
+        for key, value in job_record.items():
+            slack_message += f"\t⦿ {key}: {value}\n"
+    return slack_message
