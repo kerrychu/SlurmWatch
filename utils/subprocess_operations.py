@@ -55,7 +55,7 @@ def stdout_to_job_records(s: str) -> JOB_RECORDS:
 def stdout_to_quota_records(s: str) -> QUOTA_RECORD:
     s = s.strip()
     s_list = s.split()
-    headers = ["FileSet", "Used Storage (GB)", "Storage Limit (GB)", "Current File Number", "File Number Limit"]
+    headers = ["Used Storage (GB)", "Storage Limit (GB)", "Current File Number", "File Number Limit"]
     quota_record = {}
     assert len(s_list) == len(
         headers), f"unexpected error: quota size different from headers size. quota: {s_list}, headers: {headers}"
