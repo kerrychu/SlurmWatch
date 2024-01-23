@@ -20,4 +20,4 @@ def monitor():
 
 if __name__ == "__main__":
     for project_id in PROJECT_IDs:
-        get_fileset_quota(project_id)
+        print(get_fileset_quota(project_id))
