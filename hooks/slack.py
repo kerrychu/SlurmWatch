@@ -2,16 +2,8 @@ import requests
 import json
 
 
-def send_slack_message(data: dict[str, str], webhook: str) -> str:
-    text= ""
-    for key, value in data.items():
-        if isinstance(value, list):
-            for element in value:
-                for subkey, subvalue in element.items():
-                    text += f"\t⦿ {subkey}: {subvalue}\n"
-        text += f"⦿ {key}: {value}\n"
-
-    payload = {"text": text}
+def send_slack_message(message: str, webhook: str) -> str:
+    payload = {"text": message}
     payload_json = json.dumps(payload)
     headers = {"Content-type": "application/json"}
     response = requests.request(
