@@ -4,7 +4,7 @@ from utils.subprocess_operations import get_piped_stdout, stdout_to_gpu_records,
 from hooks.slack import send_slack_message
 
 load_dotenv()
-SLACK_WEBHOOK = os.getenv("SLACK_JOB_WEBHOOK")
+SLACK_WEBHOOK = os.getenv("SLACK_GPU_JOBS_WEBHOOK")
 
 
 def get_gpu_jobs() -> str:
@@ -15,7 +15,7 @@ def get_gpu_jobs() -> str:
 
 def monitor():
     gpu_jobs = get_gpu_jobs()
-    gpu_records =  stdout_to_gpu_records(gpu_jobs)
+    gpu_records = stdout_to_gpu_records(gpu_jobs)
     slack_message = job_records_to_slack_message("🔉 Currently Running GPU Jobs\n", gpu_records)
     send_slack_message(slack_message, SLACK_WEBHOOK)
 
