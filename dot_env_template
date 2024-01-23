@@ -1,4 +1,7 @@
 SLACK_JOB_WEBHOOK=""   <- start with https://
 SLACK_QUOTA_WEBHOOK=""
+SLACK_GPU_JOBS_WEBHOOK=""
 ENABLE_JOB_DEBUG_MODE=False   <- True or False only
 PROJECT_IDS="S0090,S0090"  <- no space, comma separated, no trailing comma
+GPU_USERS="user1,user2"
+PARTITIONS="gpu_cuda,gpu_rocm"
