@@ -47,7 +47,7 @@ def job_records_to_slack_message(job_records: JOB_RECORDS) -> str:
     for job_record in job_records:
         slack_message += "\n"
         for key, value in job_record.items():
-            slack_message += f"⦿ {key}: {value}\n"
+            slack_message += f"\t⦿ {key}: {value}\n"
     return slack_message
 
 
@@ -90,6 +90,5 @@ def monitor_my_jobs():
 
 
 if __name__ == "__main__":
-    print("debug", ENABLE_DEBUG_MODE)
     if not ENABLE_DEBUG_MODE:
         monitor_my_jobs()
