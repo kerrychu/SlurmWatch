@@ -22,8 +22,8 @@ def get_idle_nodes() -> str:
 def monitor():
     idle_nodes = get_idle_nodes()
     idle_node_records = stdout_to_records(HEADER, idle_nodes)
-    header = f"🔉 Currently, there are {len(idle_node_records)} running GPU Jobs on Bunya.\n Here are some from our lab.\n\n"
-    filtered_idle_node_records = list(filter(lambda x: x["USER"] in PARTITIONS, idle_node_records))
+    header = "🟢Available nodes in Bunya\n\n"
+    filtered_idle_node_records = list(filter(lambda x: x["PARTITION"] in PARTITIONS, idle_node_records))
     slack_message = job_records_to_slack_message(header, filtered_idle_node_records)
     send_slack_message(slack_message, SLACK_WEBHOOK)
 
