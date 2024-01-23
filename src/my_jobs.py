@@ -9,7 +9,7 @@ from src.utils.data_serialization import (
 )
 from src.utils.subprocess_operations import (
     stdout_to_job_records,
-    JOB_RECORDS,
+    RECORDS,
     job_records_to_slack_message,
     get_cmd_stdout,
 )
@@ -23,7 +23,7 @@ ENABLE_DEBUG_MODE = os.getenv("ENABLE_JOB_DEBUG_MODE").lower() == "true"
 SLACK_WEBHOOK = os.getenv("SLACK_JOB_WEBHOOK")
 
 
-def list_my_job_records() -> JOB_RECORDS:
+def list_my_job_records() -> RECORDS:
     """_summary_ list current jobs of mine
 
     Returns:
@@ -33,7 +33,7 @@ def list_my_job_records() -> JOB_RECORDS:
     return stdout_to_job_records(stdout)
 
 
-def get_last_updated_job_records() -> Optional[JOB_RECORDS]:
+def get_last_updated_job_records() -> Optional[RECORDS]:
     if not os.path.exists(JOB_FOLDER):
         os.mkdir(JOB_FOLDER)
         return None
