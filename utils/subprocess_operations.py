@@ -14,8 +14,7 @@ def get_cmd_stdout(command: str) -> str:
 
     if result.returncode == 0:
         return result.stdout
-    else:
-        print(f"Command: {command} failed with error: {result.stderr}")
+    print(f"Command: {command} failed with error: {result.stderr}")
 
 
 def get_piped_stdout(main_command: str, piped_command: str) -> Optional[str]:
@@ -35,10 +34,10 @@ def get_piped_stdout(main_command: str, piped_command: str) -> Optional[str]:
 
         if piped_result.returncode == 0:
             return piped_result.stdout
-    else:
-        print(
-            f"Command: {main_command} | {piped_command} failed with error: {initial_command_result.stderr}"
-        )
+
+    print(
+        f"Command: {main_command} | {piped_command} failed with error: {initial_command_result.stderr}"
+    )
 
 
 def strip_spaces(l: list[str]) -> list[str]:

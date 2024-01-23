@@ -49,10 +49,8 @@ def monitor_my_jobs():
 
     if last_updated_job_records:
         current_jobs_records = list_my_job_records()
-        current_job_ids = set([record["JOBID"] for record in current_jobs_records])
-        last_updated_job_ids = set(
-            [record["JOBID"] for record in last_updated_job_records]
-        )
+        current_job_ids = {record["JOBID"] for record in current_jobs_records}
+        last_updated_job_ids = {record["JOBID"] for record in last_updated_job_records}
 
         if current_job_ids != last_updated_job_ids:
             new_job_ids = current_job_ids.difference(last_updated_job_ids)
@@ -64,7 +62,9 @@ def monitor_my_jobs():
                     if record["JOBID"] in new_job_ids
                 ]
 
-                slack_message = job_records_to_slack_message("🔉 Update: New Jobs\n", new_job_records)
+                slack_message = job_records_to_slack_message(
+                    "🔉 Update: New Jobs\n", new_job_records
+                )
                 send_slack_message(message=slack_message, webhook=SLACK_WEBHOOK)
             if finished_job_ids != set():
                 finished_job_records = [
@@ -72,7 +72,9 @@ def monitor_my_jobs():
                     for record in last_updated_job_records
                     if record["JOBID"] in finished_job_ids
                 ]
-                slack_message = job_records_to_slack_message("🔉 Update: Complete Jobs\n", finished_job_records)
+                slack_message = job_records_to_slack_message(
+                    "🔉 Update: Complete Jobs\n", finished_job_records
+                )
                 send_slack_message(message=slack_message, webhook=SLACK_WEBHOOK)
             write_job_records_to_json(current_jobs_records, JOB_FILE_PATH)
     else:

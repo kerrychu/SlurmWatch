@@ -106,7 +106,12 @@ disable=
     fixme,
     cyclic-import,
     import-error,
-    missing-module-docstring
+    missing-module-docstring,
+    consider-alternative-union-syntax,
+    unspecified-encoding,
+    consider-using-with,
+    inconsistent-return-statements
+
 
 
 [REPORTS]
@@ -518,7 +523,7 @@ preferred-modules=
 
 # Exceptions that will emit a warning when being caught. Defaults to
 # "Exception"
-overgeneral-exceptions=Exception
+overgeneral-exceptions=builtins.Exception
 
 
 [TYPING]
