@@ -2,12 +2,12 @@ import os
 from typing import Optional
 
 from dotenv import load_dotenv
-from src.hooks.slack import send_slack_message
-from src.utils.data_serialization import (
+from schedule.hooks.slack import send_slack_message
+from schedule.utils.data_serialization import (
     read_json_as_job_records,
     write_job_records_to_json,
 )
-from src.utils.subprocess_operations import (
+from schedule.utils.subprocess_operations import (
     stdout_to_job_records,
     RECORDS,
     job_records_to_slack_message,

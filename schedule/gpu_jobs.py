@@ -1,11 +1,11 @@
 import os
 from dotenv import load_dotenv
-from src.utils.subprocess_operations import (
+from schedule.utils.subprocess_operations import (
     get_piped_stdout,
     stdout_to_records,
     job_records_to_slack_message,
 )
-from src.hooks.slack import send_slack_message
+from schedule.hooks.slack import send_slack_message
 
 load_dotenv()
 SLACK_WEBHOOK = os.getenv("SLACK_GPU_JOBS_WEBHOOK")

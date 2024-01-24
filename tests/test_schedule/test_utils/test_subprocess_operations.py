@@ -1,4 +1,4 @@
-from src.utils.subprocess_operations import (
+from schedule import (
     strip_empty_string,
     job_records_to_slack_message,
 )
