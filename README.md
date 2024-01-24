@@ -21,7 +21,7 @@ Introducing **SlurmWatch** - a tool meticulously crafted for effortless monitori
 
 ### Scheduling
 
-- For the moment, you can fork it, or just clone it and use crontab to run `monitor.py`
+- For the moment, you can fork it, or just clone it and use crontab to run monitoring tasks
 - Follow the `dot_env_template` to create your own `.env` file
 - then do `crontab -e`
 - and add a schedule of your preference
